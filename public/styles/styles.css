@@ -52,3 +52,63 @@ body {
 .float-right {
 	float: right;
 }
+
+#admin-left {
+	margin: 1rem;
+	position: fixed;
+	right: 50%;
+	left: 10rem;
+	top: 4rem;
+	height: -moz-calc(100% - 9rem);
+	height: -webkit-calc(100% - 9rem);
+	height: -o-calc(100% - 9rem);
+	height: calc(100% - 9em);
+	overflow-y: scroll;
+}
+
+#admin-right {
+	margin: 1rem;
+	position: fixed;
+	right: 10rem;
+	left: 50%;
+	top: 4rem;
+	height: -moz-calc(100% - 14rem);
+	height: -webkit-calc(100% - 14rem);
+	height: -o-calc(100% - 14rem);
+	height: calc(100% - 14em);
+	overflow-y: scroll;
+}
+
+#admin-input-bar {
+	position: fixed;
+	right: 10rem;
+	left: 50%;
+	top: -moz-calc(100% - 9rem);
+	top: -webkit-calc(100% - 9rem);
+	top: -o-calc(100% - 9rem);
+	top: calc(100% - 9em);
+	height: 5rem;
+}
+
+.admin-card {
+	border-radius: 0rem;
+}
+
+.admin-card:hover {
+	cursor: pointer;
+}
+
+.manual-card {
+	background-color: #ffba01;
+}
+
+#active-session-chat {
+	height: -moz-calc(100% - 9rem);
+	/* WebKit */
+	height: -webkit-calc(100% - 9rem);
+	/* Opera */
+	height: -o-calc(100% - 9rem);
+	/* Standard */
+	height: calc(100% - 9em);
+	overflow-y: scroll;
+}

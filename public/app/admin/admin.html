@@ -5,24 +5,61 @@
 		</a>
 	</div>
 </nav>
-<div id="chat-body">
+<div id="admin-left">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-6">
-				<div class="card">
-					<div class="card-body">
-						<div ng-repeat="session in sessions" ng-click="makeActive(session)" class="card">
+			<div class="col-md-12">
+				<div ng-repeat="session in sessions" class="admin-card card" ng-class="{'manual-card': session.manual}">
+					<div ng-click="makeActive(session)" class="card-body">
+						Unique Chat Id: {{session.sessionToken}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="admin-right">
+	<div class="container">
+		<div class="row">
+			<div id="active-session-chat" class="col-md-12">
+				<div ng-repeat="chat in activeSession.messages" class="row message-card">
+					<div ng-if="chat.type == 0" class="col-md-12">
+						<div class="card">
 							<div class="card-body">
-								Unique Chat Id: {{session.sessionToken}}
+								<div class="row">
+									<div class="col-md-12">
+										<div ng-class="{'float-right': chat.who == 'Bot'}">
+											<span class="card-title">{{chat.who}}</span> at {{chat.time | date:'hh:mm a'}}
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<div>{{chat.content}}</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="col-md-6">
-				{{activeSession}}
+		</div>
+	</div>
+</div>
+<div ng-show="activeSession != undefined" id="admin-input-bar">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-md-8">
+				<form ng-submit="send()">
+					<input placeholder="Type a message here..." type="text" class="form-control" ng-model="userInput" autofocus>
+				</form>
+			</div>
+			<div class="col-md-3">
+				<button class="btn btn-default" ng-click="send()">Send</button>
 			</div>
 		</div>
+		<a id="bottom"></a>
 	</div>
 </div>
 <nav id="input-bar" class="navbar fixed-bottom navbar-light bg-light">

@@ -35,15 +35,17 @@ chat.on('connection', function (client) {
 	};
 	client.emit('chat', newMessage);
 	client.on('chat', function (data) {
-		var newMessage = handlers.chat(data);
-		client.emit('chat', newMessage);
+		admin.emit('admin', data);
+		handlers.chat(client, admin, data);
 	});
 });
 
 var admin = io.of('/admin');
-// admin.on('connection', function (socket) {
-// 	socket.emit('admin', 'This worked');
-// });
+admin.on('connection', function (adminClient) {
+	adminClient.on('admin', function (data) {
+		handlers.adminChat(data);
+	})
+});
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({'extended': 'true'}));

@@ -42,8 +42,8 @@
 			newMessage.time = new Date();
 			$scope.chatLog.push(newMessage);
 			chat.emit('chat', newMessage);
-			$scope.scrollToBottom();
 			$scope.userInput = "";
+			$scope.scrollToBottom();
 		}
 
 		$scope.scrollToBottom();
