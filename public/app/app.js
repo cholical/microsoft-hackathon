@@ -3,9 +3,9 @@
   'use strict';
   var app = angular.module('chat', ['ui.router', 'ui.bootstrap', 'ui.bootstrap.modal', 'ngCookies']);
 
-  app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', configRoutes]);
+  app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$locationProvider', configRoutes]);
 
-  function configRoutes ($stateProvider, $urlRouterProvider, $httpProvider) {
+  function configRoutes ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
     $stateProvider
       .state('home', {
         url: '/home',
@@ -20,9 +20,9 @@
 
     $urlRouterProvider.otherwise('/home');
 
-    // $locationProvider.html5Mode({
-    //   enabled: true
-    // });
+    $locationProvider.html5Mode({
+      enabled: true
+    });
 
   };
 
