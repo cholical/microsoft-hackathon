@@ -121,31 +121,43 @@ var adminChat = function (data) {
 
 var botChat = function (admin, sessionToken, text) {
 	var client = clientDirectory[sessionToken];
-	var data = {
-		type: 0,
-		who: 'Bot',
-		time: new Date(),
-		content: text,
-		sessionToken: sessionToken
-	};
 	var currentSession;
 	_.forEach(activeSessions, function (session) {
-		if (session.sessionToken == data.sessionToken) {
+		if (session.sessionToken == sessionToken) {
 			currentSession = session;
-			currentSession.messages.push(data);
 			found = true;
 		}
 	});
 	if (!found) {
-		clientDirectory[data.sessionToken] = client;
+		clientDirectory[sessionToken] = client;
 		var newSession = {
-			sessionToken: data.sessionToken,
+			sessionToken: sessionToken,
 			manual: false,
 			messages: []
 		}
-		newSession.messages.push(data);
 		currentSession = newSession;
-		activeSessions.push(newSession);
+		activeSessions.push(currentSession);
+	}
+	var data = {
+		type: 0,
+		who: 'Kenny',
+		time: new Date(),
+		content: text,
+		sessionToken: sessionToken
+	};
+	if (text.substring(0, 2) == '-1') {
+		currentSession.manual = true;
+		data.type = -1;
+	} else if (text.substring(0, 2) == '-2') {
+		text = text.substring(2);
+		var contentArray = text.split('|');
+		data.content = contentArray[0];
+		data.image = contentArray[1].replace(/\s/g, '');
+		data.link = contentArray[2].replace(/\s/g, '');
+		data.type = -2;
+		currentSession.messages.push(data);
+	} else {
+		currentSession.messages.push(data);
 	}
 	admin.emit('admin', data);
 	client.emit('chat', data);

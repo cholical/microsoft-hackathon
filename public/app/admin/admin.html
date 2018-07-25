@@ -28,7 +28,7 @@
 							<div class="card-body">
 								<div class="row">
 									<div class="col-md-12">
-										<div ng-class="{'float-right': chat.who == 'Bot'}">
+										<div ng-class="{'float-right': chat.who != 'Me'}">
 											<span class="card-title">{{chat.who}}</span> at {{chat.time | date:'hh:mm a'}}
 										</div>
 									</div>
@@ -36,6 +36,34 @@
 								<div class="row">
 									<div class="col-md-12">
 										<div>{{chat.content}}</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div ng-if="chat.type == -2" class="col-md-10">
+						<div class="card">
+							<div class="card-body">
+								<div class="row">
+									<div class="col-md-12">
+										<div ng-class="{'float-right': chat.who == 'Me'}">
+											<span class="card-title">{{chat.who}}</span> at {{chat.time | date:'hh:mm a'}}
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<div>{{chat.content}}</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<img class="chat-image" ng-src="{{chat.image}}"></div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="chat-product-page col-md-12">
+										<a ng-href="{{chat.link}}" target="_blank">Go To Product Page</a>
 									</div>
 								</div>
 							</div>

@@ -112,3 +112,14 @@ body {
 	height: calc(100% - 9em);
 	overflow-y: scroll;
 }
+
+.chat-image {
+	max-width: 100%;
+	max-height: 100%
+	height: auto;
+}
+
+.chat-product-page {
+	text-align: center;
+	margin: 2rem;
+}

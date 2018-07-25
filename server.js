@@ -29,9 +29,9 @@ var chat = io.of('/chat');
 chat.on('connection', function (client) {
 	var newMessage = {
 		type: 0,
-		who: 'Bot',
+		who: 'Kenny',
 		time: new Date(),
-		content: "Hi! I'm AI Assistant Kenny! What is your name?"
+		content: "Hi! I'm Microsoft Kenny! What is your name?"
 	};
 	client.emit('chat', newMessage);
 	client.on('chat', function (data) {

@@ -19,7 +19,7 @@
 
 		var defaultMessage = {
 			type: 0,
-			who: 'Bot',
+			who: 'Kenny',
 			content: ''
 		}
 
@@ -62,6 +62,25 @@
 						manual: true,
 						messages: []
 		    		}
+		    		$scope.sessions.push(newSession);
+		    	}
+			    $scope.$apply();
+			    $scope.scrollToBottom();
+			} else if (data.type == -2) {
+				var found = false;
+			    angular.forEach($scope.sessions, function (session) {
+			    	if (session.sessionToken == data.sessionToken) {
+			    		session.messages.push(data);
+			    		found = true;
+			    	}
+			    });
+			    if (!found) {
+		    		var newSession = {
+		    			sessionToken: data.sessionToken,
+						manual: false,
+						messages: []
+		    		}
+		    		newSession.messages.push(data);
 		    		$scope.sessions.push(newSession);
 		    	}
 			    $scope.$apply();
