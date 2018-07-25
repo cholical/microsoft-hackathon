@@ -31,7 +31,7 @@ chat.on('connection', function (client) {
 		type: 0,
 		who: 'Bot',
 		time: new Date(),
-		content: 'How may I help you today?'
+		content: "Hi! I'm AI Assistant Kenny! What is your name?"
 	};
 	client.emit('chat', newMessage);
 	client.on('chat', function (data) {
@@ -58,6 +58,15 @@ app.get('/getActiveSessions', function (req, res) {
 app.post('/test', function (req, res) {
 	//var postParam = req.body.postParam;
 	// var req.get("custom-header-name");
+	res.sendStatus(200);
+});
+
+app.post('/bot/v3/conversations/:conversationId/activities/:activityId', function (req, res) {
+	var data = req.body;
+	if (req.body.type == 'message') {
+		console.dir(req.body);
+		handlers.botChat(admin, req.params.conversationId, req.body.text);
+	}
 	res.sendStatus(200);
 });
 
